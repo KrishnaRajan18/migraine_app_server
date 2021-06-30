@@ -39,7 +39,7 @@ Allows a user to "login" with their correct credentials. Returns the authToken,u
 
 Returns the most frequent statistics of a users attack.
 
-### GET `api/users/:user_id/records`
+### GET `migraine/users/:user_id/records`
 
 A logged-in user can access all of their records.
 
