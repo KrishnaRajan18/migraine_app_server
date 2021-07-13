@@ -53,8 +53,8 @@ usersRouter
 
     usersService
       .hasUserWithUserEmail(req.app.get("db"), email)
-      .then(hasUserWithUserName => {
-        if (hasUserWithUserName)
+      .then(hasUserWithUserEmail => {
+        if (hasUserWithUserEmail)
           return res.status(400).json({ error: `Email already taken` });
 
         return usersService.hashPassword(password).then(hashedPassword => {
@@ -194,38 +194,7 @@ usersRouter
       })
       .catch(next);
   })
-  .patch(jsonParser, (req, res, next) => {
-    const {
-      location,
-      time,
-      onset,
-      intensity,
-      trigger,
-      symptom,
-      treatment,
-      comment
-    } = req.body;
-    const recordToUpdate = {
-      location,
-      time,
-      onset,
-      intensity,
-      trigger,
-      symptom,
-      treatment,
-      comment
-    };
-
-    RecordsService.updateRecord(
-      req.app.get("db"),
-      req.params.record_id,
-      recordToUpdate
-    )
-      .then(numRowsAffected => {
-        res.status(204).end();
-      })
-      .catch(next);
-  });
+;
 
 // Individual user stats -- GET THE STATS OF A CURRENT USER -BY ID
 usersRouter
